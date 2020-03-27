@@ -10,6 +10,7 @@ import no.nav.fo.veilarbregistrering.oppgave.OppgaveService;
 import no.nav.sbl.featuretoggle.unleash.UnleashService;
 import org.springframework.stereotype.Component;
 
+import javax.ws.rs.BadRequestException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -44,13 +45,16 @@ public class OppgaveResource {
     @Path("/")
     @ApiOperation(value = "Oppretter oppgave 'kontakt bruker'")
     public OppgaveDto opprettOppgave(OppgaveDto oppgaveDto) {
-        final Bruker bruker = userService.hentBruker();
-
-        pepClient.sjekkSkrivetilgangTilBruker(map(bruker));
-
         if (!skalOppretteOppgave()) {
             throw new RuntimeException("Toggle `veilarbregistrering.opprettOppgave` er skrudd av");
         }
+
+        if (oppgaveDto.getOppgaveType() == null) {
+            throw new BadRequestException("oppgaveType er påkrevd felt!");
+        }
+
+        final Bruker bruker = userService.hentBruker();
+        pepClient.sjekkSkrivetilgangTilBruker(map(bruker));
 
         Oppgave oppgave = oppgaveService.opprettOppgave(bruker, oppgaveDto.getOppgaveType());
 
