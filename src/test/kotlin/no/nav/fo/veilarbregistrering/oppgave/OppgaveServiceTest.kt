@@ -100,7 +100,7 @@ class OppgaveServiceTest {
     @Test
     fun `ingen tidligere oppgaver`() {
         whenever(oppgaveRouter.hentEnhetsnummerFor(BRUKER)).thenReturn(Optional.empty())
-        whenever(oppgaveRepository.hentOppgaverFor(ArgumentMatchers.any())).thenReturn(emptyList())
+        whenever(oppgaveRepository.hentOppgaverFor(ArgumentMatchers.notNull())).thenReturn(emptyList())
         whenever(oppgaveGateway.opprett(ArgumentMatchers.any())).thenReturn(DummyOppgaveResponse())
         oppgaveService.opprettOppgave(BRUKER, OppgaveType.OPPHOLDSTILLATELSE)
         val oppgave = Oppgave.opprettOppgave(
