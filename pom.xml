@@ -136,10 +136,10 @@
             <artifactId>kafka-clients</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.oracle.ojdbc</groupId>
-            <artifactId>ojdbc8</artifactId>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
-            <version>19.3.0.0</version>
+            <version>42.2.23</version>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>

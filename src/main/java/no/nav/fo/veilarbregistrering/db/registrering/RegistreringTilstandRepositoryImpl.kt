@@ -113,7 +113,7 @@ class RegistreringTilstandRepositoryImpl(private val db: NamedParameterJdbcTempl
 
     private fun nesteFraSekvens(): Long {
         return db.queryForObject(
-            "select $SEQ_TABLE_NAME.nextval from dual",
+            "SELECT nextval('$SEQ_TABLE_NAME')",
             emptyMap<String, Any>(),
             Long::class.java
         )!!

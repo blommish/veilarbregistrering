@@ -44,7 +44,7 @@ class ManuellRegistreringRepositoryImpl(private val db: NamedParameterJdbcTempla
     }
 
     private fun nesteFraSekvens(): Long {
-        return db.queryForObject("SELECT $MANUELL_REGISTRERING_SEQ.nextval FROM DUAL", emptyMap<String, Any>(), Long::class.java)!!
+        return db.queryForObject("SELECT nextval('$MANUELL_REGISTRERING_SEQ')", emptyMap<String, Any>(), Long::class.java)!!
     }
 
     companion object {

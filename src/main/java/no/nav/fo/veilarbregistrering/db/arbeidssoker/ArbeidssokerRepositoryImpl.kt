@@ -69,7 +69,7 @@ class ArbeidssokerRepositoryImpl(private val db: NamedParameterJdbcTemplate) : A
     }
 
     private fun nesteFraSekvens(): Long {
-        return db.queryForObject("SELECT $FORMIDLINGSGRUPPE_SEQ.nextval FROM DUAL", emptyMap<String, Any>(), Long::class.java)!!
+        return db.queryForObject("SELECT nextval('$FORMIDLINGSGRUPPE_SEQ')", emptyMap<String, Any>(), Long::class.java)!!
     }
 
     override fun finnFormidlingsgrupper(foedselsnummer: Foedselsnummer): Arbeidssokerperioder {

@@ -91,7 +91,7 @@ class BrukerRegistreringRepositoryImpl(private val db: NamedParameterJdbcTemplat
     }
 
     private fun nesteFraSekvens(sekvensNavn: String): Long {
-        return db.queryForObject("SELECT $sekvensNavn.nextval FROM DUAL", noParams, Long::class.java)!!
+        return db.queryForObject("SELECT nextval('$sekvensNavn')", noParams, Long::class.java)!!
     }
 
     companion object {
