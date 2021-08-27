@@ -11,7 +11,10 @@
 .project
 .settings
 .DS_Store
-target
+.gradle
 *.jsp
-activemq-data/
 bash.exe.stackdump
+target
+activemq-data/
+build/
+gradle/
