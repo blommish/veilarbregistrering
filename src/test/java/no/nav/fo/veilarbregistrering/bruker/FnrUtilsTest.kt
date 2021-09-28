@@ -13,6 +13,28 @@ class FnrUtilsTest {
     }
 
     @Test
+    fun `skal utlede korrekt fodselsdato for NPID`() {
+        val fnr = FoedselsnummerTestdataBuilder.getFodselsnummerAsStringOnDateMinusYears(dagensDato, 40)
+        assertThat(FnrUtils.utledFodselsdatoForFnr(fnr)).isEqualTo(LocalDate.of(1977, 12, 14))
+    }
+
+    @Test
+    fun `skal validere gyldige foedselsnumer`() {
+        assertThat(FnrUtils.validerFoedselsnummer("11018333386")).isTrue
+        assertThat(FnrUtils.validerFoedselsnummer("10108000398")).isTrue
+    }
+
+    @Test
+    fun `skal invalidere ugyldige foedselsnumer`() {
+        assertThat(FnrUtils.validerFoedselsnummer("11018333316")).isFalse
+    }
+
+    @Test
+    fun `skal validere gyldige dnummer`() {
+        assertThat(FnrUtils.validerFoedselsnummer("67099125087")).isTrue
+    }
+
+    @Test
     fun `skal være 20 år`() {
         assertAntallAar(20, LocalDate.of(1997, 12, 14))
         assertAntallAar(20, LocalDate.of(1997, 1, 1))

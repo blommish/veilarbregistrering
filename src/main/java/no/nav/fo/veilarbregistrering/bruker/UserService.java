@@ -1,6 +1,5 @@
 package no.nav.fo.veilarbregistrering.bruker;
 
-import no.bekk.bekkopen.person.FodselsnummerValidator;
 import no.nav.common.auth.context.AuthContextHolder;
 import no.nav.fo.veilarbregistrering.bruker.feil.ManglendeBrukerInfoException;
 import org.springframework.stereotype.Service;
@@ -46,7 +45,7 @@ public class UserService {
             fnr = getFnr();
         }
 
-        if (!FodselsnummerValidator.isValid(fnr)) {
+        if (!FnrUtils.INSTANCE.validerFoedselsnummer(fnr)) {
             throw new ManglendeBrukerInfoException("Fødselsnummer ikke gyldig.");
         }
 

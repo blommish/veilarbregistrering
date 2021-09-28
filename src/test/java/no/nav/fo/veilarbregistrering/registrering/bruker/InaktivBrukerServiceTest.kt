@@ -66,7 +66,7 @@ class InaktivBrukerServiceTest {
 
     companion object {
         private val FNR_OPPFYLLER_KRAV =
-                FoedselsnummerTestdataBuilder.fodselsnummerOnDateMinusYears(LocalDate.now(), 40)
+                FoedselsnummerTestdataBuilder.foedselsnummerOnDateMinusYears(LocalDate.now(), 40)
         private val BRUKER_INTERN = Bruker.of(FNR_OPPFYLLER_KRAV, AktorId.of("AKTØRID"))
     }
 }

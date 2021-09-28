@@ -235,7 +235,7 @@ class RegistreringResourceTest(
     }
 }
 @Configuration
-private class RegistreringResourceConfig {
+private open class RegistreringResourceConfig {
     @Bean
     fun registreringResource(
             autorisasjonService: AutorisasjonService,
